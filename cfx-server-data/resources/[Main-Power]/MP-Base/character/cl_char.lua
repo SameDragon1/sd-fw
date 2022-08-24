@@ -11,7 +11,7 @@ Citizen.CreateThread(function()
         if NetworkIsSessionStarted() then 
             TriggerServerEvent('MP-Base:Char:Joined')
             TriggerEvent('MP-Base:Char:StartCamera')
-            -- TriggerEvent('MP-ui:client:CloseCharUI')
+            TriggerEvent('MP-Elements:client:CloseCharUI')
             -- TriggerEvent('MP-Base:PlayerLogin')
             SelectChar(true)
             return
