@@ -1,6 +1,6 @@
-local MP = exports['MP-Base']:MP-GetObject()
+local MP = exports['MP-Base']:GetObject()
 
-MP.Functions.RegsiterServwerCallback('MP-Elements:server:getMoney', function(source, cb)
+MP.Functions.RegisterServerCallback('MP-Elements:server:getMoney', function(source, cb)
     local src = source
     local player = MP.Functions.getPlayer(src)
 

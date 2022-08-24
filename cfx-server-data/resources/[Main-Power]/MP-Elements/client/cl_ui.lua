@@ -1,4 +1,4 @@
-local MP = exports['MP-Base']:MP-GetObject()
+local MP = exports['MP-Base']:GetObject()
 local loaded = false 
 
 RegisterNetEvent('MP-Elements:client:OpenUI:Cash')

@@ -19,11 +19,11 @@ MP.Base.Start(self)
 --     print('Called Back ' .. MP .. '')
 -- end)
 
-exports('MP-GetObject', function()
+exports('GetObject', function()
     return MP
 end)
 
--- local MP = exports['MP-Base']:MP-GetObject()
+-- local MP = exports['MP-Base']:MP:GetObject()
 
 -- ADMIN 
 RegisterNetEvent("MP-Admin:updateGroup")

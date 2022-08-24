@@ -16,11 +16,11 @@ end)
 --     callback(MP)
 -- end)
 
-exports('MP-GetObject', function()
+exports('GetObject', function()
     return MP
 end)
 
--- local MP = exports['MP-Base']:MP-GetObject()
+-- local MP = exports['MP-Base']:MP:GetObject()
 
 -- Commands 
 AddEventHandler('MP-Base:addCommand', function(command, callback, suggestion, args)
