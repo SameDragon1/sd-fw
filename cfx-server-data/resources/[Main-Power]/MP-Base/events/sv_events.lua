@@ -75,7 +75,7 @@ MP.Functions.LoadPlayer = function(source, pData, cid)
 			citizenid = result[1].citizenid,
         })
 
-        TriggerClientEvent('MP=Base:PlayerLoaded', source)
+        TriggerClientEvent('MP-Base:PlayerLoaded', source)
         -- TriggerClientEvent() come back to for ui
         -- Trigger for Admin
     end)

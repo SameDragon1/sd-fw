@@ -23,7 +23,7 @@ exports('GetObject', function()
     return MP
 end)
 
--- local MP = exports['MP-Base']:MP:GetObject()
+-- local MP = exports['MP-Base']:GetObject()
 
 -- ADMIN 
 RegisterNetEvent("MP-Admin:updateGroup")

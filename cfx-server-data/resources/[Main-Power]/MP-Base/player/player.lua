@@ -18,6 +18,7 @@ MP.Player.LoadData = function(source, identifier, cid)
         self.Data.lastname = result[1].lastname
         self.Data.cash = result[1].cash
         self.Data.bank = result[1].bank
+        self.Data.citizenid = '' ..  self.Data.cid .. '-' .. self.Data.identifier .. ''
 
         self.Functions.addCash = function(amount)
             MP.Functions.addCash(self, amount)
