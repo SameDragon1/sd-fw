@@ -6,7 +6,7 @@ MP.Player.LoadData = function(source, identifier, cid)
     exports['ghmattimysql']:execute('SELECT * FROM players WHERE identifier = @identifier AND cid = @cid', {['@identifier'] = identifier, ['@cid'] = cid}, function(result)
         local self = {}
         self.Data = {}
-        self.Function = {}
+        self.Functions = {}
 
         self.Data.PlayerId = source
         self.Data.identifier = result[1].identifier
