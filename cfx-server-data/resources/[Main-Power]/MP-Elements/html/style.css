@@ -7,44 +7,50 @@
 
 body {
     display: block;
-    z-index: -1;
-    font-family: 'Oswald';
-    overflow: hidden;
-    height: 1080px;
-    width: 100%;
+    z-index: -1000;
 }
 
 #cash {
     position: absolute;
     right: 2vw;
     top: 8vh;
-    font-weight: 600;
+    font-family: 'Oswald'; 
+    font-weight: 700;
     font-size: 30px;
-    color: white;
-    text-shadow: 1.5px 1.5px 0px black;
+    color: rgb(255, 255, 255);
+    text-shadow: 1.5px 1.5px 0px #000000;
 }
 
 #dollar {
     font-size: 28px;
-    font-weight: 600;
-    color: rgb(30,156,30)
+    font-weight: 700;
+    color: rgb(30, 156, 30);
 }
+
 
 #bank {
     position: absolute;
     right: 2vw;
     top: 12.5vh;
-    font-weight: 600;
+    font-family: 'Oswald'; 
     font-size: 35px;
-    color: rgb(220, 218, 218);
-    text-shadow: 1.5px 1.5px 0px black;
+    font-weight: 700;
+    color: rgb(119, 119, 119);
+    text-shadow: 1.5px 1.5px 0px #000000;
 }
+
 
 #bankchange {
     position: absolute;
     right: 2vw;
+    font-family: 'Oswald'; 
+    font-size: 25px;
     font-weight: 200;
-    font-size: 35px;
-    text-shadow: 1.5px 1.5px 0px black;
+    text-shadow: 1.5px 1.5px 0px #000000;
 }
 
+body {
+    overflow: hidden;
+    height:1080px;
+    width:100%;
+}
