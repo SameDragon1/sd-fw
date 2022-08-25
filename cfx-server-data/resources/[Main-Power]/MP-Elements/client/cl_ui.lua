@@ -2,7 +2,7 @@ local MP = exports['MP-Base']:GetObject()
 local loaded = false 
 
 RegisterNetEvent('MP-Elements:client:OpenUI:Cash')
-AddEventHandler('MP-Elements:client:OpenUI:Cash', function()\
+AddEventHandler('MP-Elements:client:OpenUI:Cash', function()
     SendNUIMessage({action = "hide"})
     MP.Functions.TriggerServerCallback('MP-Elements:Server:getMoney', function(cash, bank)
         SendNUIMessage({action = 'setValue', key = 'cash', value = cash})
@@ -22,6 +22,10 @@ AddEventHandler('MP-Elements:Client:UpdateCash', function(amount,change,value)
     elseif change == 'remove' then 
         SendNUIMessage({action = 'removeCash', value = value})
     end
+end)
+
+RegisterCommand('cash', function(source, args)
+    TriggerEvent('MP-Elements:ShowingCash', source)
 end)
 
 RegisterNetEvent('MP-Elements:ShowingCash')
