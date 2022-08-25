@@ -9,6 +9,7 @@ TriggerEvent('MP-Base:addGroupCommand', 'setgroup', 'admin', function(source,arg
                 -- Add Notification set properly
             else
                 -- Add Notification wrong user group
+                -- Add log for people trying to edit someones perms
             end
         else
             -- Add Notification for no player
