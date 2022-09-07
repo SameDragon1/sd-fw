@@ -51,12 +51,12 @@ end
 
 RegisterServerEvent('MP-Logs:Server:Send')
 AddEventHandler('MP-Logs:Server:Send', function(log, name, message)
-    sendToDiscord(log, name, message, 16721680)
+    exports['MP-Logs']:sendTODiscord(log,name,message,color)
 end)
 
 --  Exports ['MP-Logs']:sendTODiscord(log,name,message,color)
 
-function sendToDiscord(log, name, message,color)
+exports sendToDiscord(log, name, message,color)
     if log == "DISCORD_WEBHOOK" or "1" then 
         log = DISCORD_WEBHOOK
     end

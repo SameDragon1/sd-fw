@@ -26,3 +26,10 @@ AddEventHandler('MP-Logs:Client:CheckPlayer', function(playerOn)
     local playeronline = #playerOn
     SetRichPresence(playerName .. ' - '.. playeronline .. '/' .. MP.Discord.SlotFiveM)
 end)
+
+
+-- exports['MP-Logs']:sendTODiscord(log,name,message,color)
+
+exports sendToDiscord(log, name, message,color)
+    TriggerServerEvent('MP-Logs:Server:Send', log, name, message,color)
+end
