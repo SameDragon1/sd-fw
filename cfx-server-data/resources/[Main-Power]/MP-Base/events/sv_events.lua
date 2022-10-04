@@ -65,7 +65,7 @@ MP.Functions.LoadPlayer = function(source, pData, cid)
         MP.Player.LoadData(source, identifier, cid)
 		Citizen.Wait(7)
 		local player = MP.Functions.getPlayer(source)
-        TriggerClientEvent('MP-SetCharData', source {
+        TriggerClientEvent('MP-SetCharData', source, {
             identifier = result[1].identifier,
 			license = result[1].license,
 			cid = result[1].cid,
