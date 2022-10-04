@@ -34,3 +34,35 @@ AddEventHandler('MP-Elements:ShowingCash', function()
     Wait(5000)
     SendNUIMessage({action = "hide"})
 end)
+
+-- Notifications
+-- exports['MP-Elements']:Noti(clr, msg, time)
+--[[ 
+
+clr = color || 1,2,3 | Green, red, blue // default blue
+msg = msg
+time short/long
+
+--]]
+
+function OpenNoti(clr, msg, time)
+    ui = true
+    SendNUIMessage({runNoti = true, color = clr, text = msg, time = time})
+end
+
+function CloseNoti()
+    ui = false
+    SendNUIMessage({closeNoti = true})
+end
+
+-- exports['MP-Elements']:Noti(clr, msg, time)
+exports('Noti', function(clr,msg,time)
+    if not clr then clr = 1 end -- default blue
+    if not time then time = 6000 end 
+    if time == 'short' then time = 6000 end if time == 'long' then time = 12000 end
+    OpenNoti(clr, msg, time)
+end)
+
+RegisterCommand('test', function(args, raw)
+    exports['MP-Elements']:Noti(2, "cocks n balls", 6000)
+end)
