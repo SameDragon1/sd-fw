@@ -45,8 +45,30 @@ $(document).ready(function () {
         if (event.data.action == "updateValue") {
             updateValue(data.key, data.value)
         }
-    })
-})
+
+
+        // Notis
+        if (data.runNoti === true) {
+            var msg = data.text
+            var timer = data.time
+            var element
+            $('#color' + data.color ).css('display', 'none');
+            if (data.color == 1) {
+                element = $('<div id="color' + data.color + '" class="noti-bg blue" style="display:none">' + msg + '</div>'); 
+            } else if (data.color == 2) {
+                element = $('<div id="color' + data.color + '"class="noti-bg red" style="display:none">' + msg + '</div>');
+            } else if (data.color == 3) {
+                element = $('<div id="color' + data.color + '"class="noti-bg green" style="display:none">' + msg + '</div>');
+            }
+
+            $('.wrapdiv').prepend(element);
+            $(element).fadeIn(500);
+            setTimeout(function(){
+                $(element).fadeOut(timer-(timer/2));
+            }, timer);
+        }
+    });
+});
 
 function setValue(key, value) {
     $('#' + key).html("<span id='dollar'>$  </span>" + value)

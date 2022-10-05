@@ -51,6 +51,49 @@ body {
 
 body {
     overflow: hidden;
-    height:1080px;
+    height:100%;
     width:100%;
+}
+
+/* noti */
+
+.wrapdiv {
+    font-family: 'Oswald'; 
+    display: block;
+    margin-left: 15%;
+    margin-top: 52.925%;
+    width: 25%;
+    height: 20%;
+    color: white;
+    padding: 2px;
+}
+
+.noti {
+    height: 10%;
+    overflow: hidden;
+    position: relative;
+}
+
+.noti-bg {
+    font-family: 'Oswald'; 
+    background-color: rgba(16, 35, 246, 0.8);
+    color: white;
+    margin: 6px;
+    text-align: center;
+    padding: 6px;
+    border-radius: 6px;
+    font-weight: 2px;
+    font-size: 18px;
+    display: inline-block;
+}
+
+.blue {
+    background-color: rgba(84, 97, 247, 0.8);
+}
+
+.red {
+    background-color: rgba(222, 72, 72, 0.8);
+}
+.green {
+    background-color: rgba(133, 239, 95, 0.8);
 }
