@@ -363,9 +363,9 @@ Citizen.CreateThread(function()
 end)
 
 RegisterNetEvent('qb-clothing:client:getOutfits', function(requiredJob, gradeLevel)
-    local gender = "male"
-    if MP.Functions.GetPlayerData().charinfo.gender == 1 then gender = "female" end
-    MP.Functions.TriggerCallback('qb-clothing:server:getOutfits', function(result)
+    -- local gender = "male"
+    -- if MP.Functions.GetPlayerData().charinfo.gender == 1 then gender = "female" end
+    MP.Functions.TriggerServerCallback('qb-clothing:server:getOutfits', function(result)
         openMenu({
             {menu = "roomOutfits", label = "Presets", selected = true, outfits = Config.Outfits[requiredJob][gender][gradeLevel]},
             {menu = "myOutfits", label = "My Outfits", selected = false, outfits = result},
@@ -471,63 +471,63 @@ if Config.UseTarget then
     end)
 
 else
-    CreateThread(function()
-        local zones = {}
-        for _, v in pairs(Config.Stores) do
-            zones[#zones+1] = BoxZone:Create(
-                v.coords, v.length, v.width, {
-                name = v.shopType,
-                minZ = v.coords.z - 2,
-                maxZ = v.coords.z + 2,
-                debugPoly = false,
-            })
-        end
+    -- CreateThread(function()
+    --     local zones = {}
+    --     for _, v in pairs(Config.Stores) do
+    --         zones[#zones+1] = BoxZone:Create(
+    --             v.coords, v.length, v.width, {
+    --             name = v.shopType,
+    --             minZ = v.coords.z - 2,
+    --             maxZ = v.coords.z + 2,
+    --             debugPoly = false,
+    --         })
+    --     end
 
-        local clothingCombo = ComboZone:Create(zones, {name = "clothingCombo", debugPoly = false})
-        clothingCombo:onPlayerInOut(function(isPointInside, _, zone)
-            if isPointInside then
-                zoneName = zone.name
-                inZone = true
-                if zoneName == 'surgeon' then
-                    exports['qb-core']:DrawText('[E] - Plastic Surgery', 'left')
-                elseif zoneName == 'clothing' then
-                    exports['qb-core']:DrawText('[E] - Clothing Shop', 'left')
-                elseif zoneName == 'barber' then
-                    exports['qb-core']:DrawText('[E] - Barber', 'left')
-                end
-            else
-                inZone = false
-                exports['qb-core']:HideText()
-            end
-        end)
+    --     local clothingCombo = ComboZone:Create(zones, {name = "clothingCombo", debugPoly = false})
+    --     clothingCombo:onPlayerInOut(function(isPointInside, _, zone)
+    --         if isPointInside then
+    --             zoneName = zone.name
+    --             inZone = true
+    --             if zoneName == 'surgeon' then
+    --                 exports['qb-core']:DrawText('[E] - Plastic Surgery', 'left')
+    --             elseif zoneName == 'clothing' then
+    --                 exports['qb-core']:DrawText('[E] - Clothing Shop', 'left')
+    --             elseif zoneName == 'barber' then
+    --                 exports['qb-core']:DrawText('[E] - Barber', 'left')
+    --             end
+    --         else
+    --             inZone = false
+    --             exports['qb-core']:HideText()
+    --         end
+    --     end)
 
-        local roomZones = {}
-        for k, v in pairs(Config.ClothingRooms) do
-            roomZones[#roomZones+1] = BoxZone:Create(
-                v.coords, v.length, v.width, {
-                name = 'ClothingRooms_' .. k,
-                minZ = v.coords.z - 2,
-                maxZ = v.coords.z + 2,
-                debugPoly = false,
-            })
-        end
+    --     local roomZones = {}
+    --     for k, v in pairs(Config.ClothingRooms) do
+    --         roomZones[#roomZones+1] = BoxZone:Create(
+    --             v.coords, v.length, v.width, {
+    --             name = 'ClothingRooms_' .. k,
+    --             minZ = v.coords.z - 2,
+    --             maxZ = v.coords.z + 2,
+    --             debugPoly = false,
+    --         })
+    --     end
 
-        local clothingRoomsCombo = ComboZone:Create(roomZones, {name = "clothingRoomsCombo", debugPoly = false})
-        clothingRoomsCombo:onPlayerInOut(function(isPointInside, _, zone)
-            if isPointInside then
-                local zoneID = tonumber(MP.Shared.SplitStr(zone.name, "_")[2])
-                -- local job = Config.ClothingRooms[zoneID].isGang and PlayerData.gang.name or PlayerData.job.name
-                -- if (job == Config.ClothingRooms[zoneID].requiredJob) then
-                    zoneName = zoneID
-                    inZone = true
-                    exports['qb-core']:DrawText('[E] - Clothing Shop', 'left')
-                -- end
-            else
-                inZone = false
-                exports['qb-core']:HideText()
-            end
-        end)
-    end)
+    --     local clothingRoomsCombo = ComboZone:Create(roomZones, {name = "clothingRoomsCombo", debugPoly = false})
+    --     clothingRoomsCombo:onPlayerInOut(function(isPointInside, _, zone)
+    --         if isPointInside then
+    --             local zoneID = tonumber(MP.Shared.SplitStr(zone.name, "_")[2])
+    --             -- local job = Config.ClothingRooms[zoneID].isGang and PlayerData.gang.name or PlayerData.job.name
+    --             -- if (job == Config.ClothingRooms[zoneID].requiredJob) then
+    --                 zoneName = zoneID
+    --                 inZone = true
+    --                 exports['qb-core']:DrawText('[E] - Clothing Shop', 'left')
+    --             -- end
+    --         else
+    --             inZone = false
+    --             exports['qb-core']:HideText()
+    --         end
+    --     end)
+    -- end)
 
     -- Clothing Thread
     CreateThread(function ()
@@ -574,7 +574,7 @@ else
 end
 
 RegisterNetEvent('qb-clothing:client:openOutfitMenu', function()
-    MP.Functions.TriggerCallback('qb-clothing:server:getOutfits', function(result)
+    MP.Functions.TriggerServerCallback('qb-clothing:server:getOutfits', function(result)
         openMenu({
             {menu = "myOutfits", label = "My Outfits", selected = true, outfits = result},
         })
@@ -664,6 +664,14 @@ local clothingCategorys = {
 
 
 --  Call when first load into the server
+
+RegisterCommand('MenuO', function()
+    openMenu({
+        {menu = "character", label = "Character", selected = true},
+        {menu = "clothing", label = "Features", selected = false},
+        {menu = "accessoires", label = "Accessories", selected = false}
+    })
+end)
 
 RegisterNetEvent('qb-clothing:client:openMenu')
 AddEventHandler('qb-clothing:client:openMenu', function()
@@ -814,7 +822,6 @@ function openMenu(allowedMenus)
     creatingCharacter = true
 
     PlayerData = MP.Functions.GetPlayerData()
-    local trackerMeta = PlayerData.metadata["tracker"]
 
     GetMaxValues()
     SendNUIMessage({
@@ -1602,13 +1609,13 @@ end
 
 RegisterNUICallback('setCurrentPed', function(data, cb)
     local playerData = MP.Functions.GetPlayerData()
-    if playerData.charinfo.gender == 0 then
-        cb(Config.ManPlayerModels[data.ped])
-        ChangeToSkinNoUpdate(Config.ManPlayerModels[data.ped])
-    else
-        cb(Config.WomanPlayerModels[data.ped])
-        ChangeToSkinNoUpdate(Config.WomanPlayerModels[data.ped])
-    end
+    -- if playerData.charinfo.gender == 0 then
+    --     cb(Config.ManPlayerModels[data.ped])
+    --     ChangeToSkinNoUpdate(Config.ManPlayerModels[data.ped])
+    -- else
+    --     cb(Config.WomanPlayerModels[data.ped])
+    --     ChangeToSkinNoUpdate(Config.WomanPlayerModels[data.ped])
+    -- end
 end)
 
 RegisterNUICallback('saveClothing', function(_, cb)
@@ -1632,9 +1639,9 @@ AddEventHandler('qb-clothes:client:CreateFirstCharacter', function()
             {menu = "accessoires", label = "Accessories", selected = false}
         })
 
-        if pData.charinfo.gender == 1 then
-            skin = "mp_f_freemode_01"
-        end
+        -- if pData.charinfo.gender == 1 then
+        --     skin = "mp_f_freemode_01"
+        -- end
 
         ChangeToSkinNoUpdate(skin)
         SendNUIMessage({
