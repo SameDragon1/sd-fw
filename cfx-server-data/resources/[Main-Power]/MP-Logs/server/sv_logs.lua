@@ -9,7 +9,7 @@ AddEventHandler('chatMessage', function(source, name, message)
         message = message:gsub("@everyone", "`@everyone`")
     end
     if string.match(message, "@here") then 
-        message = message:gsub("@here", "`@here`")\
+        message = message:gsub("@here", "`@here`")
     end
 
     if STEAM_KEY == '' or STEAM_KEY == nil then 
