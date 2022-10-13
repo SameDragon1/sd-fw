@@ -63,7 +63,7 @@ exports sendToDiscord(log, name, message,color)
     if log == nil then 
         log = DISCORD_ADMINWEBHOOK
     end
-    local conenct = {
+    local connect = {
         {
             ["color"] = color, 
             ["title"] = "**" .. name "**",
