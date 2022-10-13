@@ -119,3 +119,24 @@ RegisterNetEvent('MP-SetCharData')
 AddEventHandler('MP-SetCharData', function(Player)
     pData = Player
 end)
+
+-- Drawing 3d Text export
+
+exports('Draw3dText', function(x,y,z, text)
+    local onScreen,x2,y2 = World3dToScreen2d(x,y,z)
+	local posX,posY,PosZ = table.unpack(GetGameplayCamCoords())
+
+	SetTextScale(0.4, 0.4)
+	SetTextFont(4)
+	SetTextProportional(1)
+	SetTextColour(255, 255, 255, 210)
+	SetTextEntry("String")
+	SetTextCentre(1)
+	AddTextComponentString(text)
+	DrawText(x2,y2)
+	local factor = (string.len(text)) / 350
+	DrawRect(x2, y2+0.015, 0.015+factor, 0.03, 0, 0, 0, 50)
+
+end)
+
+-- local MP = exports['MP-Base']:Draw3dText(x,y,z, text)
