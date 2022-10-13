@@ -12,14 +12,14 @@ AddEventHandler('chatMessage', function(source, name, message)
         message = message:gsub("@here", "`@here`")
     end
 
-    if STEAM_KEY == '' or STEAM_KEY == nil then 
-        PerformHttpRequest(DISCORD_WEBHOOK, function(err, text, headers) end), 'POST', json.encode({username = name .. " [" .. source .. "]", content = message, tts = false}), { ['Coontent-Type'] = 'application/json'})
-    else
-        PerformHttpRequest('https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=' .. STEAM_KEY .. '&steamids=' .. tonumber(GetIDFromSource('steam', source), 16), function(err, text, headers)
-            local image = string.match(text, '"avatarful":"(.-)","')
-            PerformHttpRequest(DISCORD_WEBHOOK, function(err, text, headers) end, 'POST', json.encode({username = name .. " [" .. source .. "]", content = message, avatar_url = image, tts = false}), { ['Content-Type'] = 'application/json' })
-        end)
-    end   
+    if STEAM_KEY == '' or STEAM_KEY == nil then
+		PerformHttpRequest(DISCORD_WEBHOOK, function(err, text, headers) end, 'POST', json.encode({username = name .. " [" .. source .. "]", content = message, tts = false}), { ['Content-Type'] = 'application/json' })
+	else
+		PerformHttpRequest('https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=' .. STEAM_KEY .. '&steamids=' .. tonumber(GetIDFromSource('steam', source), 16), function(err, text, headers)
+			local image = string.match(text, '"avatarfull":"(.-)","')
+			PerformHttpRequest(DISCORD_WEBHOOK, function(err, text, headers) end, 'POST', json.encode({username = name .. " [" .. source .. "]", content = message, avatar_url = image, tts = false}), { ['Content-Type'] = 'application/json' })
+		end)
+	end 
 end)
 
 
