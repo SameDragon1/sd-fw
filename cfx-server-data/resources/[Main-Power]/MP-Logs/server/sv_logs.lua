@@ -56,7 +56,7 @@ end)
 
 --  Exports ['MP-Logs']:sendTODiscord(log,name,message,color)
 
-exports sendToDiscord(log, name, message,color)
+exports ("sendToDiscord", function(log, name, message,color)
     if log == "DISCORD_WEBHOOK" or "1" then 
         log = DISCORD_WEBHOOK
     end
