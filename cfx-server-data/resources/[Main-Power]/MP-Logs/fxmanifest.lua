@@ -10,7 +10,6 @@ author 'JSP'
 
 server_scripts {
     "config.lua",
-    "server/sv_discord.lua",
     "server/sv_logs.lua",
 }
 

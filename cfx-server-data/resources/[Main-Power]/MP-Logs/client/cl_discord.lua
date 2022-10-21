@@ -7,29 +7,14 @@ Citizen.CreateThread(function()
         SetDiscordRichPresenceAssetSmallText(MP.Discord.SmallAssetText)
         if MP.Discord.ButtonActive then 
             SetDiscordRichPresenceAction(0, MP.Discord.ActionButtonName1, MP.Discord.AssetDescriptionName1)
-            SetDiscordRichPresenceAction(0, MP.Discord.ActionButtonName2, MP.Discord.AssetDescriptionName2)
         end
         Wait(MP.Discord.Wait)
     end
 end)
 
-Citizen.CreateThread(function()
-    while true do 
-        Wait(MP.Discord.CheckWait)
-        TriggerServerEvent('MP-Logs:Server:CheckPlayerOnServer')
-    end
-end)
-
-RegisterNetEvent('MP-Logs:Client:CheckPlayer')
-AddEventHandler('MP-Logs:Client:CheckPlayer', function(playerOn)
-    local playerName = GetPlayerName(PlayerId())
-    local playeronline = #playerOn
-    SetRichPresence(playerName .. ' - '.. playeronline .. '/' .. MP.Discord.SlotFiveM)
-end)
-
 
 -- exports['MP-Logs']:sendTODiscord(log,name,message,color)
 
-exports sendToDiscord(log, name, message,color)
+exports('sendToDiscord', function(log, name, message,color)
     TriggerServerEvent('MP-Logs:Server:Send', log, name, message,color)
-end
+end)
