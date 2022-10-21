@@ -71,4 +71,4 @@ exports ("sendToDiscord", function(log, name, message,color)
         }
     }
     PerformHttpRequest(log, function(err, text, headers) end, 'POST', json.encode({username = name, embeds = connect, avatar_url = DISCORD_IMAGE}), { ['Content-Type'] = 'application/json' })
-end
+end)
