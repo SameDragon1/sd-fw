@@ -119,7 +119,7 @@ MP.Functions.addGroupCommand = function(command, group, callback, callbackfailed
 
 	RegisterCommand(command, function(source, args)
 		local Source = source
-		local pData = MP.Functions.AgetPlayer(Source)
+		local pData = MP.Functions.AdminPlayer(Source)
 
 		if(source ~= 0)then
 			if pData ~= nil then
@@ -141,7 +141,7 @@ end
 
 
 -- Usergroups for admin
-MP.Functions.setupAdmin = function(player, group)
+MP.Functions.setGroup = function(player, group)
     local identifier = player.Data.identifier
     local pCid = player.Data.cid
     exports['ghmattimysql']:execute('DELETE FROM ranking WHERE identifier = @identifier', {['@identifier'] = identifier})
