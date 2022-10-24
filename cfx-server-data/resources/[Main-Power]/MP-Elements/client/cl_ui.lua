@@ -63,6 +63,11 @@ exports('Noti', function(clr,msg,time)
     OpenNoti(clr, msg, time)
 end)
 
+RegisterNetEvent('MP-Elements:SendNotification')
+AddEventHandler('MP-Elements:SendNotification', function(clr, msg)
+    exports['MP-Elements']:Noti(clr, msg, 6000)
+end)
+
 RegisterCommand('test', function(args, raw)
     exports['MP-Elements']:Noti(2, "cocks n balls", 6000)
 end)

@@ -12,12 +12,13 @@ MP.DB.LoadCharacter = function(source, license, identifier, cid)
         bank = MP.NewCharacter.Bank,
         citizenid = '' .. cid .. '-' .. identifier .. '',
     }
+
     exports['ghmattimysql']:execute('SELECT * FROM players WHERE identifier = @identifier AND cid = @cid', {['@identifier'] = identifier, ['@cid'] = cid}, function(result)
-        if result[1].new == 1 then 
+        if result[1].new == true then
             print('New Player')
             MP.Functions.LoadPlayer(source, PlayerData, cid, 1)
-            exports['ghmattimysql']:execute('UPDATE players SET new = @new WHERE identifier = @identifier AND cid = @cid' {['@identifier'] = identifier, ['@cid'] = cid, ['@new'] = 0 })
-        elseif result[1].new == 0 then 
+            exports['ghmattimysql']:execute('UPDATE players SET new = @new WHERE identifier = @identifier AND cid = @cid', {['@identifier'] = identifier, ['@cid'] = cid, ['@new'] = 0})
+        elseif result[1].new == false then 
             print('LOAD SPAWN')
             MP.Functions.LoadPlayer(source, PlayerData, cid, 0)
         end

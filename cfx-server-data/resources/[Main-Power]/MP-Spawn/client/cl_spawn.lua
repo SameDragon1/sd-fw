@@ -21,6 +21,9 @@ RegisterNUICallback('spawn', function(data)
     local Spawn_Location = spawns[Spawn_Name]
     print(Spawn_Location) -- delete later
     CameraPosition(Spawn_Location.x, Spawn_Location.y, Spawn_Location.z)
+    local source = GetPlayerPed(-1)
+    SetPlayerInvincible(source, false)
+    FreezeEntityPosition(source, false)
 end)
 
 function CameraPosition(x,y,z)
