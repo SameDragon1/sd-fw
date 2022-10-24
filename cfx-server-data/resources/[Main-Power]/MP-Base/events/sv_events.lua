@@ -52,7 +52,7 @@ MP.Functions.CreatePlayer = function(source, Data)
     MP.Functions.LoadPlayer(source, Data)
 end
 
-MP.Functions.LoadPlayer = function(source, pData, cid)
+MP.Functions.LoadPlayer = function(source, pData, cid, new)
     local src 			= source
 	local identifier 	= pData.identifier
 	

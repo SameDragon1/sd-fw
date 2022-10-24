@@ -112,13 +112,19 @@ end)
 
 RegisterNUICallback('selectCharacter', function(data)
     local cid = tonumber(data.cid)
-    SelectChar(false)
-    TriggerServerEvent('MP-Base:Char:ServerSelect', cid)
-    -- Make sure open menu
-    TriggerEvent('MP-Spawn:openMenu') 
-    SetTimecycleModifier('default')
-    SetCamActive(cam, false)
-    DestroyCam(cam, false)
+    local isNew = data.new
+    if isNew then 
+        SelectChar(false)
+        TriggerServerEvent('MP-Base:Char:ServerSelect', cid)
+    else
+        SelectChar(false)
+        TriggerServerEvent('MP-Base:Char:ServerSelect', cid)
+        -- Make sure open menu
+        TriggerEvent('MP-Spawn:openMenu') 
+        SetTimecycleModifier('default')
+        SetCamActive(cam, false)
+        DestroyCam(cam, false) 
+    end
 end)
 
 RegisterNUICallback('CloseChar', function()

@@ -46,7 +46,9 @@ AddEventHandler('MP-Base:deleteChar', function(chardata)
 
     local citizenid = '' .. cid .. '-' .. identifier ..'' -- 1-SteamID 
 
-    exports['ghmattimysql']:execute('DELETE FROM players WHERE citizenid = @citizenid', {['@citizenid'] = citizenid})
+    -- exports['ghmattimysql']:execute('DELETE FROM players WHERE citizenid = @citizenid', {['@citizenid'] = citizenid})
+    --  This should remove everything connected where citizenid 
+    exports['ghmattimysql']:execute('DELETE FROM * WHERE citizenid = @citizenid', {['@citizenid'] = citizenid})
 
     -- Add Discord Logs here.
 
