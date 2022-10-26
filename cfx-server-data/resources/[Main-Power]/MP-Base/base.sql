@@ -19,7 +19,8 @@ CREATE TABLE `players` (
     `dob` varchar(50) DEFAULT NULL,
     `job` varchar(50) DEFAULT 'unemployed',
     `phone` text DEFAULT NULL,
-    `citizenid` varchar(200) DEFAULT NULL
+    `citizenid` varchar(200) DEFAULT NULL,
+    `new` boolean DEFAULT true
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE `ranking` (

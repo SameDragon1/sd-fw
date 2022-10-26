@@ -6,24 +6,24 @@ TriggerEvent('MP-Base:addGroupCommand', 'setgroup', 'admin', function(source,arg
         if player then 
             if MP.UserGroups[group] then
                 MP.Functions.setGroup(player, group)
-                -- Add Notification set properly
+                TriggerClientEvent('MP-Elements:SendNotification', target, 1, "Set Group Correctly to" .. group .. "" )
             else
-                -- Add Notification wrong user group
+                TriggerClientEvent('MP-Elements:SendNotification', source,  2, "Incorrect Group" )
                 -- Add log for people trying to edit someones perms
             end
         else
-            -- Add Notification for no player
+            TriggerClientEvent('MP-Elements:SendNotification', source,  2, "No Player Found." )
         end
     end
 end, function(source, args,user)
-    -- Add Notification for no permission
+    TriggerClientEvent('MP-Elements:SendNotification', source,  2, "No Permissions!" )
 end)
 
 TriggerEvent('MP-Base:addGroupCommand', 'console', 'admin', function(source, args, user)
     local msg = args[1] -- "fsjsdjfhjksdh kfdshdkfsh"
     TriggerClientEvent("chatMessage", -1, "CONSOLE: " .. message, 3 )
 end, function(source, args, user)
-    -- Add Notification for no permission
+    TriggerClientEvent('MP-Elements:SendNotification', source,  2, "No Permissions!" )
 end)
 
 
@@ -42,9 +42,10 @@ TriggerEvent('MP-Base:addGroupCommand', 'EditPrio', 'admin', function(source,arg
     local level = tonumber(args[2]) -- # amount
     if Player ~= nil then 
         UpdatePriority(tonumber(args[1]), level)
-        -- Add Notification to source
+        TriggerClientEvent('MP-Elements:SendNotification', source,  1, "Prio Updated to: " .. level .. "" )
+        TriggerClientEvent('MP-Elements:SendNotification', player,  3, "Prio Updated to: " .. level .. "" )
     else 
-        -- Add Notification with no player
+        TriggerClientEvent('MP-Elements:SendNotification', source,  2, "No Player Found." )
     end
 end)
 

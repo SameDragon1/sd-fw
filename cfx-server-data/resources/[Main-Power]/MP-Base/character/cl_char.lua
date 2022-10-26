@@ -108,17 +108,33 @@ end)
 
 -- use exports['MP-Base']:MP-Base:ChangeChar() to change character
 
-
+RegisterNetEvent('MP-Base:PlayerLoaded') 
+AddEventHandler('MP-Base:PlayerLoaded', function(new)
+    local source = GetPlayerPed(-1)
+    SetPlayerInvincible(source, true)
+    FreezeEntityPosition(source, true)
+    SetEntityCoords(source, 0,2000,0)
+    -- In Air
+    if new == 1 then 
+        -- New Player
+        SetCamActive(cam, false)
+        RenderScriptCams(false,false,1,true,true)
+        ClearTimecycleModifier()
+        SetEntityCoords(source, -1037.88, -2738.009, 20.17)
+        FreezeEntityPosition(source, false)
+        SetPlayerInvincible(source, false)
+    elseif new == 0 then 
+        TriggerEvent('MP-Spawn:openMenu') 
+    end
+end)
 
 RegisterNUICallback('selectCharacter', function(data)
     local cid = tonumber(data.cid)
     SelectChar(false)
     TriggerServerEvent('MP-Base:Char:ServerSelect', cid)
-    -- Make sure open menu
-    TriggerEvent('MP-Spawn:openMenu') 
     SetTimecycleModifier('default')
     SetCamActive(cam, false)
-    DestroyCam(cam, false)
+    DestroyCam(cam, false) 
 end)
 
 RegisterNUICallback('CloseChar', function()

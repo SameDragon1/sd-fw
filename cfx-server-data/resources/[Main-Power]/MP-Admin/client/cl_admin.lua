@@ -47,7 +47,7 @@ function MP.Admin.TeleportWaypoint(source)
             Wait(10)
         end
     else
-        print('no blip found') -- add notification here later
+        TriggerClientEvent('MP-Elements:SendNotification', source,  2, "No Blip Found" )
     end
 end
 
