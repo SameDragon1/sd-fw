@@ -6,7 +6,7 @@ TriggerEvent('MP-Base:addGroupCommand', 'setgroup', 'admin', function(source,arg
         if player then 
             if MP.UserGroups[group] then
                 MP.Functions.setGroup(player, group)
-                TriggerClientEvent('MP-Elements:SendNotification', target, 1, "Set Group Correctly to" .. group .. )
+                TriggerClientEvent('MP-Elements:SendNotification', target, 1, "Set Group Correctly to" .. group .. "" )
             else
                 TriggerClientEvent('MP-Elements:SendNotification', source,  2, "Incorrect Group" )
                 -- Add log for people trying to edit someones perms
@@ -42,8 +42,8 @@ TriggerEvent('MP-Base:addGroupCommand', 'EditPrio', 'admin', function(source,arg
     local level = tonumber(args[2]) -- # amount
     if Player ~= nil then 
         UpdatePriority(tonumber(args[1]), level)
-        TriggerClientEvent('MP-Elements:SendNotification', source,  1, "Prio Updated to: " .. level .. )
-        TriggerClientEvent('MP-Elements:SendNotification', player,  3, "Prio Updated to: " .. level .. )
+        TriggerClientEvent('MP-Elements:SendNotification', source,  1, "Prio Updated to: " .. level .. "" )
+        TriggerClientEvent('MP-Elements:SendNotification', player,  3, "Prio Updated to: " .. level .. "" )
     else 
         TriggerClientEvent('MP-Elements:SendNotification', source,  2, "No Player Found." )
     end
